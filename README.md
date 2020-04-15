@@ -6,12 +6,14 @@ plz-monoeye-cast氏の<a href="https://github.com/plz-monoeye-cast/wlw">WLWブ�
 
 (1)monoeye.js<br>
 通信エラーの原因箇所のみを修正したもの。<br>
+```
 javascript:(function(d,s){s=d.createElement('script');s.src='https://cdn.jsdelivr.net/gh/sleptwater/wonder.net-custom@1.0/monoeye.js';d.body.appendChild(s);})(document)
+```
 
-(2)sort.js
+(2)sort.js<br>
 勝率、勝数、負数の一覧表示を、使用回数順にソートして表示するよう修正したもの。
 
-(3)profile.js
+(3)profile.js<br>
 Twitter等での自己戦績開示用途を想定し、余計な表示の削除＆使用回数30回以下のキャストの非表示としたもの
 
 
