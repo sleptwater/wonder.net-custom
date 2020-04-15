@@ -6,7 +6,7 @@ plz-monoeye-cast氏の<a href="https://github.com/plz-monoeye-cast/wlw">WLWブ�
 
 (1)monoeye.js<br>
 通信エラーの原因箇所のみを修正したもの。<br>
-javascript:(function(d,s){s=d.createElement('script');s.src='https://cdn.jsdelivr.net/gh/sleptwater/wonder.net-custom@/monoeye.js';d.body.appendChild(s);})(document)
+javascript:(function(d,s){s=d.createElement('script');s.src='https://cdn.jsdelivr.net/gh/sleptwater/wonder.net-custom@1.0/monoeye.js';d.body.appendChild(s);})(document)
 
 (2)sort.js
 勝率、勝数、負数の一覧表示を、使用回数順にソートして表示するよう修正したもの。
