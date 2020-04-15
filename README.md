@@ -4,8 +4,9 @@ plz-monoeye-cast氏の<a href="https://github.com/plz-monoeye-cast/wlw">WLWブ�
 通信エラー対策に伴い、データの処理に時間がかかるようになっています。<br>
 開放済みキャスト1体あたり最低1秒は必要です。何回もブックマークレットを起動せず、気長にお待ちください。
 
-(1)monoeye.js
-通信エラーの原因箇所のみを修正したもの。
+(1)monoeye.js<br>
+通信エラーの原因箇所のみを修正したもの。<br>
+javascript:(function(d,s){s=d.createElement('script');s.src='https://cdn.jsdelivr.net/gh/sleptwater/wonder.net-custom@/monoeye.js';d.body.appendChild(s);})(document)
 
 (2)sort.js
 勝率、勝数、負数の一覧表示を、使用回数順にソートして表示するよう修正したもの。
