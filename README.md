@@ -29,7 +29,7 @@ javascript:(function(d,s){s=d.createElement('script');s.src='https://cdn.jsdeliv
 使用方法は本家様と同じです。そちらをご参照ください。<br>
 特にAndroid端末でChromeをお使いの方は、ブックマークレットの起動方法に一癖ありますのでご留意願います。
 
-作成時にfork機能を知らなかったため何もforkされていませんが、もちろんplz-monoeye-cast氏のコードの複製から作成させ頂きました。<br>
+作成時にforkを知らなかったため何もforkされていませんが、もちろんplz-monoeye-cast氏のコードの複製から作成させて頂きました。<br>
 偉大なる先人達に感謝いたします。
 
 良きワンダーライフを。
