@@ -20,7 +20,7 @@ javascript:(function(d,s){s=d.createElement('script');s.src='https://cdn.jsdeliv
 ```
 
 (3)profile.js<br>
-Twitter等での自己戦績開示用途を想定し、余計な表示の削除＆使用回数30回未満のキャストの非表示としたもの。
+Twitter等での自己戦績開示用途を想定し、余計な表示の削除＆使用回数30回未満のキャストを非表示としたもの。
 ```
 javascript:(function(d,s){s=d.createElement('script');s.src='https://cdn.jsdelivr.net/gh/sleptwater/wonder.net-custom@1.0/profile.js';d.body.appendChild(s);})(document)
 ```
