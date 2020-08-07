@@ -13,6 +13,8 @@ if(d.URL == CAST_LIST_URL){
 	//各キャスト名
 	var acqcn = [];
 	
+	//各キャストCR
+	var acqcr = [];
 	
 	//タブがファイターの場合
 	if(chkrolepage()){
@@ -50,6 +52,9 @@ if(d.URL == CAST_LIST_URL){
 			
 				//キャスト名を取得
 				getCastName();
+				
+				//キャストランクを取得
+				getCastRank();
 
 				//表示していないページを取得
 				var pbp = d.querySelectorAll('.page_block_page');
@@ -72,6 +77,9 @@ if(d.URL == CAST_LIST_URL){
 			
 						//キャスト名を取得
 						getCastName();
+
+						//キャストランクを取得
+						getCastRank();
 				
 						//表示していないページを取得
 						pbp = d.querySelectorAll('.page_block_page');
@@ -94,6 +102,9 @@ if(d.URL == CAST_LIST_URL){
 			
 			//キャストIDをcookieに保存
 			d.cookie = "acqcn" + "=" + escape(acqcn.join(":")) + "; expires=" + ex.toUTCString();
+			
+			//キャストIDをcookieに保存
+			d.cookie = "acqcr" + "=" + escape(acqcr.join(":")) + "; expires=" + ex.toUTCString();
 
 			alert("獲得済みキャスト情報取得が完了しました。\n各キャストのページでブックマークレットを実行することで、勝率などを確認できます。\n新たなキャストを獲得した場合は、再度獲得済みキャスト情報取得を行ってください。\n獲得済みキャスト数：" + acqci.length);
 			
@@ -183,6 +194,9 @@ if(d.URL == CAST_LIST_URL){
 		var dci = [];
 		// 表示する各キャストの名前 ... display cast name
 		var dcn = [];
+		// 表示する各キャストのキャストランク ... display cast rank
+		var dcr = [];
+
 
 		//cookieからデータを取得
 		if (d.cookie) {
@@ -194,6 +208,8 @@ if(d.URL == CAST_LIST_URL){
 					dci = unescape(kv[1]).split(":");
 				}else if(kv[0] == "acqcn"){
 					dcn = unescape(kv[1]).split(":");
+				}else if(kv[0] == "acqcr"){
+					dcr = unescape(kv[1]).split(":");
 				}
 			}
 		}
@@ -259,7 +275,7 @@ if(d.URL == CAST_LIST_URL){
 			var exe_cnt = 0;
 		
 			//キャストページから1秒おきに1キャスト分のデータの取得リクエスト
-			loopSleep(dci.length, 3300, function(i){
+			loopSleep(dci.length, 1000, function(i){
 				//ページのキャストの情報取得リクエストは投げない
 				if(i != proc_ci){
 					create_request(CAST_URL + dci[i],i);
@@ -537,6 +553,52 @@ function getCastName(){
 	//キャスト名を取得
 	for (var i = 0; i < bcc.length; i++) {
 		acqcn.push(bcc[i].textContent);
+	}
+}
+
+function getCastRank(){
+
+	var gcr;
+	var spl1ex = [];
+	var spl1cr = [];
+	var spl2cr;
+	var spl3cr = [];
+	var spl4cr = [];
+	var spl5cr;
+	var spl6cr;
+	var spl7cr = [];
+	var spl8cr = [];
+	var spl9cr;
+	
+	//キャストランク部分の情報を取得
+	var clcr = d.querySelectorAll('.castlist_castrank');
+	
+	//キャストランクを取得
+	for (var i = 0; i < clcr.length; i++) {
+		spl1ex = clcr[i].className.split("bg_castrank");
+		if (spl1ex[1] == 4){
+			gcr = 30;
+		} else {
+			gcr = 0;
+		}
+		
+		spl1cr = clcr[i].childNodes;
+		spl2cr = spl1cr[0].getAttribute('src');
+		spl3cr = spl2cr.split("num_castrank");
+		spl4cr = spl3cr[1].split(".");
+		spl4cr = spl3cr[1].split(".");
+		spl5cr = Number(spl4cr[0]);
+		
+		if (spl1cr[1] == null){			
+			gcr = gcr + spl5cr;
+		} else {
+			spl6cr = spl1cr[1].getAttribute('src');
+			spl7cr = spl6cr.split("num_castrank");
+			spl8cr = spl7cr[1].split(".");
+			spl9cr = Number(spl8cr[0]);
+			gcr = gcr + spl5cr * 10 + spl9cr;
+		}
+		acqcr.push(gcr);
 	}
 }
 
@@ -829,6 +891,51 @@ function sorceget(src_txt,i){
 	}
 }
 
+//ゼロデータを代入
+function sourcezero(i){
+	try{
+		ur[i]  = 0;
+		wc[i]  = 0;
+		crc[i] = 0;
+		wdc[i] = 0;
+		tp[i]  = 0;
+		wp[i]  = 0;
+		lp[i]  = 0;
+		tn[i]  = 0;
+		wn[i]  = 0;
+		ln[i]  = 0;
+		lc[i]  = 0;
+		wr[i]  = 0;
+		kr[i]  = 0;
+		castimgurl[i] = 0;
+					
+		//全キャスト勝率以下の箇所は、既存の処理を流用するため
+		//ここで通信分の情報をcookieに格納する
+		savecookie(i,dci[i]);
+	} catch(e) {
+		if(err_num == 0){
+			err_num = 9;
+			errmsg = "\nキャストID:" + dci[i] + "\nエラー内容:" + e;
+		}
+	} finally {
+		exe_cnt++;
+	
+		if(exe_cnt == dci.length - 1){
+			
+			if(err_num == 0){
+				disp_proc();
+			}else if(err_num == 1){
+				alert("通信エラーが発生しました。\nログアウトされています。\n再度ログインして実行してください。");
+			}else if(err_num == 2){
+				alert("通信エラーが発生しました。\nキャストページへ正常にアクセスできませんでした。\n通信が不安定になっているか、またはサーバが応答していません。");
+			}else if(err_num == 9){
+				alert("想定外のエラーが発生しました。\n出来れば当メッセージと発生時の状況をお知らせください。" + errmsg);
+			}
+		}
+	}
+	
+}
+
 //通信リクエストを生成する
 function create_request(url,index){
 
@@ -854,19 +961,31 @@ function loopSleep(_loopLimit,_interval, _mainFunc){
   var loopLimit = _loopLimit;
   var interval = _interval;
   var mainFunc = _mainFunc;
+  var t;
   var i = 0;
   var loopFunc = function () {
-    var result = mainFunc(i);
+   if (dcr[i] != 0 ){
+      if (i != proc_ci){
+        var result = mainFunc(i);
+      }
+    }else{
+      var result = sourcezero(i);
+    }
     if (result === false) {
       // break機能
       return;
     }
+    t = i;
     i = i + 1;
     if (i < loopLimit) {
-      if( ( i % 4 ) == 0 ) {
-        setTimeout(loopFunc, interval);
-      }else{
+      if ( dcr[t] == 0 ){
         loopFunc();
+      }else{
+        if ( t != proc_ci){
+          setTimeout(loopFunc, interval);
+        }else{
+          loopFunc();
+        }
       }
     }
   }
