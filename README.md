@@ -2,7 +2,10 @@ plz-monoeye-cast氏の<a href="https://github.com/plz-monoeye-cast/wlw">WLWブ�
 またついでに、筆者が欲しいと思った機能を追加したバージョンも作りました。
 
 通信エラー対策に伴い、データの処理に時間がかかるようになっています。<br>
-獲得済みキャスト1体あたり約0.8秒必要です。40秒程度かかるとお考えください。
+獲得済みキャスト1体あたり約1秒必要です。
+
+sort.jsだけ少し改良して、CR0のキャストは読み込み時間に影響しなくなりました。<br>
+CR0のキャストが多ければ、それだけ読み込み時間は短くなります。
 
 処理中は特に何の表示も出ませんが、何回もブックマークレットを起動することなくお待ちください。<br>
 処理が終われば自動でページの表示が変わります。
@@ -16,7 +19,7 @@ javascript:(function(d,s){s=d.createElement('script');s.src='https://cdn.jsdeliv
 (2)sort.js<br>
 勝率、勝数、負数の一覧表示を、使用回数順にソートして表示するようにしたもの。
 ```
-javascript:(function(d,s){s=d.createElement('script');s.src='https://cdn.jsdelivr.net/gh/sleptwater/wonder.net-custom@1.5/sort.js';d.body.appendChild(s);})(document)
+javascript:(function(d,s){s=d.createElement('script');s.src='https://cdn.jsdelivr.net/gh/sleptwater/wonder.net-custom@1.6/sort.js';d.body.appendChild(s);})(document)
 ```
 
 (3)profile.js<br>
