@@ -275,7 +275,7 @@ if(d.URL == CAST_LIST_URL){
 			var exe_cnt = 0;
 		
 			//キャストページから1秒おきに1キャスト分のデータの取得リクエスト
-			loopSleep(dci.length, 1000, function(i){
+			loopSleep(dci.length, 1500, function(i){
 				//ページのキャストの情報取得リクエストは投げない
 				if(i != proc_ci){
 					create_request(CAST_URL + dci[i],i);
