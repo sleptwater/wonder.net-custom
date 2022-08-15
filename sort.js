@@ -93,9 +93,9 @@ if(d.URL == CAST_LIST_URL){
 			
 			var now = new Date().getTime();
 			var day = 1000*3600*24;
-			// Cookieの有効期限(365日間)
+			// Cookieの有効期限(1日間)
 			var ex = new Date();
-			ex.setTime(now+day*365);
+			ex.setTime(now+day*1);
 			
 			//キャストIDをcookieに保存
 			d.cookie = "acqci" + "=" + escape(acqci.join(":")) + "; expires=" + ex.toUTCString();
@@ -275,7 +275,7 @@ if(d.URL == CAST_LIST_URL){
 			var exe_cnt = 0;
 		
 			//キャストページから1秒おきに1キャスト分のデータの取得リクエスト
-			loopSleep(dci.length, 1500, function(i){
+			loopSleep(dci.length, 3000, function(i){
 				//ページのキャストの情報取得リクエストは投げない
 				if(i != proc_ci){
 					create_request(CAST_URL + dci[i],i);
@@ -318,9 +318,9 @@ function disp_proc(){
 	var ppcd = pcd.concat();
 
 	var day = 1000*3600*24;
-	// Cookieの有効期限(365日間)
+	// Cookieの有効期限(1日間)
 	var ex = new Date();
-	ex.setTime(now+day*365);
+	ex.setTime(now+day*1);
 
 	// Cookieの読み込み
 	// 前回のキャストデータを取得
@@ -620,9 +620,9 @@ function savecookie(fpci,id){
 	var pci = "p" + id;
 
 	var day = 1000*3600*24;
-	// Cookieの有効期限(365日間)
+	// Cookieの有効期限(1日間)
 	var ex = new Date();
-	ex.setTime(now+day*365);
+	ex.setTime(now+day*1);
 
 	// Cookieの読み込み
 	// 前回のキャストデータを取得
